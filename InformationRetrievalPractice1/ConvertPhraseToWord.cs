@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace InformationRetrievalPractice1
@@ -30,12 +32,15 @@ namespace InformationRetrievalPractice1
                     while ((line = reader.ReadLine()) != null) //Read text in file line by line
                     {
                         TxtSource.Text = line; //Assign text from line to TextBox for display source text
-                        string[] words = line.Split(' '); //Split phrase to word by space
-                        foreach (string word in words) //Get earch word in words array
+                        string getOnlyAphabets = Regex.Replace(line, @"[^A-Za-z- ]", "");
+                        string[] words = getOnlyAphabets.Split(' '); //line.Split(' '); //Split phrase to word by space
+                        string[] sortWords = words.OrderBy(w => w).ToArray();
+                        string[] removeEmtyElement = sortWords.Where(w => w != string.Empty).ToArray();
+                        foreach (string word in removeEmtyElement) //Get earch word in words array
                         {
                             using (StreamWriter writer = new StreamWriter("result.txt", true)) //Handle text file to write text into and append text
                             {
-                                if (isFirstLine) //If first line with add these columns name
+                                if (isFirstLine) //If first line will add these columns name
                                 {
                                     writer.WriteLine("term\tdocID"); //Write these columns name
                                     isFirstLine = false; //Set to false to skip Add columns name next line
