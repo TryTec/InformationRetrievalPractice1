@@ -16,7 +16,7 @@ namespace InformationRetrievalPractice1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConvertPhraseToWord());
+            Application.Run(new FrmConvertPhraseToWordV2());
         }
     }
 }
