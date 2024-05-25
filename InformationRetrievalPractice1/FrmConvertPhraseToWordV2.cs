@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -217,6 +218,21 @@ namespace InformationRetrievalPractice1
         private void BtnClear_Click(object sender, EventArgs e)
         {
             ClearControl();
+        }
+
+        private void DgvWord_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < DgvWord.Rows.Count)
+            {
+                if (e.RowIndex % 2 == 0)
+                {
+                    DgvWord.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightBlue;
+                }
+                else
+                {
+                    DgvWord.Rows[e.RowIndex].DefaultCellStyle.BackColor = DgvWord.DefaultCellStyle.BackColor;
+                }
+            }
         }
     }
 }

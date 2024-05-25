@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConvertPhraseToWordV2));
             this.TlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.TlpMenuLeft = new System.Windows.Forms.TableLayoutPanel();
@@ -177,25 +178,42 @@
             this.DgvWord.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DgvWord.BackgroundColor = System.Drawing.SystemColors.Window;
             this.DgvWord.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgvWord.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.DgvWord.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.DgvWord.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.DgvWord.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvWord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvWord.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTerm,
             this.colDocFreq,
             this.colDocID});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Khmer OS Siemreap", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvWord.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Khmer OS Siemreap", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvWord.DefaultCellStyle = dataGridViewCellStyle2;
             this.DgvWord.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvWord.EnableHeadersVisualStyles = false;
             this.DgvWord.Location = new System.Drawing.Point(445, 98);
+            this.DgvWord.MultiSelect = false;
             this.DgvWord.Name = "DgvWord";
+            this.DgvWord.ReadOnly = true;
+            this.DgvWord.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DgvWord.RowHeadersVisible = false;
+            this.DgvWord.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.DgvWord.RowTemplate.ReadOnly = true;
+            this.DgvWord.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DgvWord.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvWord.Size = new System.Drawing.Size(436, 460);
             this.DgvWord.TabIndex = 3;
+            this.DgvWord.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.DgvWord_RowPrePaint);
             // 
             // colTerm
             // 
@@ -325,7 +343,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnUploadFile;
         private System.Windows.Forms.TextBox TxtPhrase;
-        private System.Windows.Forms.DataGridView DgvWord;
         private System.Windows.Forms.TableLayoutPanel TlpMenuRight;
         private System.Windows.Forms.Button BtnConvertWord;
         private System.Windows.Forms.Button BtnSaveFile;
@@ -335,5 +352,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDocFreq;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDocID;
         private System.Windows.Forms.Button BtnClear;
+        private System.Windows.Forms.DataGridView DgvWord;
     }
 }
