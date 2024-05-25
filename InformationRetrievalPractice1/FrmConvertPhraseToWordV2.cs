@@ -169,11 +169,19 @@ namespace InformationRetrievalPractice1
             using (var sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                string sqlQuery = @"SELECT Term, COUNT(Term) as WordCount, DocID = 
-                                        STUFF((SELECT DISTINCT ', ' + CAST(DocID as varchar(max))
-                                               FROM Word b 
-                                               WHERE b.Term = a.Term 
-                                              FOR XML PATH('')), 1, 2, '')
+                string sqlQuery = @"SELECT LOWER(Term) AS 'Term', 
+                                           COUNT(Term) AS 'WordCount', 
+                                           'DocID' = STUFF
+                                           (
+                                               (
+                                                   SELECT ', ' + CAST(b.DocID AS varchar(max))
+                                                   FROM Word b 
+                                                   WHERE b.Term = a.Term 
+                                                   GROUP BY b.DocID -- Group by DocID to ensure distinct values
+                                                   ORDER BY CAST(b.DocID AS int) -- Sorting DocID values
+                                                   FOR XML PATH('')
+                                               ), 1, 2, ''
+                                           )
                                     FROM Word a
                                     GROUP BY Term";
                 using (var sqlCommand = new SqlCommand(sqlQuery, sqlConnection))
